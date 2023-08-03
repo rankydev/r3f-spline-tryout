@@ -4,7 +4,7 @@ import { useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 import { useMemo, useRef, useState } from 'react'
-import { Line, useCursor, MeshDistortMaterial } from '@react-three/drei'
+import { Line, useCursor, MeshDistortMaterial, OrbitControls } from '@react-three/drei'
 import { useRouter } from 'next/navigation'
 
 export const Blob = ({ route = '/', ...props }) => {
@@ -66,3 +66,39 @@ export function Dog(props) {
 
   return <primitive object={scene} {...props} />
 }
+export function Cube(props) {
+  const { scene } = useGLTF('/cube.glb')
+  const cubeRef = useRef(null)
+  const rotationSpeed = 0.01;
+
+  // useFrame((state, delta) => {
+  //   if (cubeRef.current) {
+  //     cubeRef.current.rotation.y += rotationSpeed;
+  //   }
+  // });
+
+  return <primitive object={scene} {...props} ref={cubeRef} />
+}
+
+export function Icon1(props) {
+  const { scene } = useGLTF('/icon1.glb')
+  const icon1Ref = useRef(null);
+
+  // useFrame((state, delta) => {
+  //   if(icon1Ref) {
+  //     const children = icon1Ref.current.children[0].children[0].children;
+  //     console.log(children)
+  //     if(children[5].position.y < 50 || children[6].position.y < 100 || (children[0].position.y < 180 && children[0].scale.y < 1 && children[0].position.y < 1)) {
+  //       children[5].position.y += 1;
+  //       children[6].position.y += 2;
+        
+  //       children[0].position.y += 5;
+  //       children[0].scale.y += 0.03;
+  //       children[0].rotation.y += 0.03;
+  //     }
+  //   }
+  // });
+
+  return <primitive object={scene} {...props} ref={icon1Ref}/>
+}
+
